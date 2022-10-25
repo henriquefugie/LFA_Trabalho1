@@ -1,14 +1,15 @@
 from AutomatoFD import AutomatoFD
+from JFLAP.LerJFLAP import LerJFLAP
+from JFLAP.SalvarJFLAP import SalvarJFLAP
 
 if __name__ == '__main__':
 
     afd = AutomatoFD('ab')
 
-    for i in range(1, 5):
+    for i in range(0, 6):
         afd.criaEstado(i)
     afd.mudaEstadoInicial(1)
     afd.mudaEstadoFinal(4, True)
-
     afd.criaTransicao(1, 2, 'a')
     afd.criaTransicao(2, 1, 'a')
     afd.criaTransicao(3, 4, 'a')
@@ -20,3 +21,7 @@ if __name__ == '__main__':
 
     print(afd)
     
+    afd = SalvarJFLAP(afd,'./JFLAP/AutomatosJFLAP/', 'automatoteste')
+    print('automato salvo!')
+    
+    afd = LerJFLAP
