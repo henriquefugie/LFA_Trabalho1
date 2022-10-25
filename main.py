@@ -1,4 +1,3 @@
-
 from AutomatoFD import AutomatoFD
 
 if __name__ == '__main__':
