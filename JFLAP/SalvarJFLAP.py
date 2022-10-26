@@ -1,4 +1,3 @@
-import os
 import xml.etree.ElementTree as ETc
 from AutomatoFD import AutomatoFD
 
