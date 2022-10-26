@@ -2,6 +2,10 @@ from AutomatoFD import *
 from JFLAP.SalvarJFLAP import SalvarJFLAP
 from JFLAP.LerJFLAP import LerJFLAP
 
+def copiaAFD(self):
+    afdcopia = self
+    return afdcopia
+    
 if __name__ == '__main__':
 
     afd = AutomatoFD('ab')
@@ -31,12 +35,12 @@ if __name__ == '__main__':
     afd1.criaTransicao(2, 2, 'b')
     print(afd1)
     
-    salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
-    salvar1.salvarAFD()
-    print('automato salvo!')
+    # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
+    # salvar1.salvarAFD()
+    # print('automato salvo!')
     
-    leitura = LerJFLAP(caminho = "./JFLAP/Exemplos/ComecaComAB.jff")
-    afd1 = leitura.lerAFD()
-    print(afd1)
-    print('automato lido')
+    # leitura = LerJFLAP(caminho = "./JFLAP/Exemplos/ComecaComAB.jff")
+    # afd1 = leitura.lerAFD()
+    # print(afd1)
+    # print('automato lido')
     

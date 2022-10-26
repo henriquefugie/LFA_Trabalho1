@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ETc
 from AutomatoFD import AutomatoFD
 
+#código copiado para apenas arrumar a endentacao do arquivo .jff para melhorar a visualizacao do arquivo
 def indent(elem, level=0):
     i = "\n" + level*"  "
     if len(elem):
