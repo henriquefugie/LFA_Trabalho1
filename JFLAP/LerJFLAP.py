@@ -3,11 +3,11 @@ from AutomatoFD import AutomatoFD
 
 class LerJFLAP():
     
-    def __init__(self,dir):
-        self.dir = dir
+    def __init__(self,caminho):
+        self.caminho = caminho
         
-    def lerAFD(caminho):
-        root = ETc.parse(str(caminho)).getroot()
+    def lerAFD(self):
+        root = ETc.parse(str(self.caminho)).getroot()
         # ler alfabeto
         alfabeto = '';
         for type_tag in root.findall('automaton/transition'):

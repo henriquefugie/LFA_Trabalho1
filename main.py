@@ -1,6 +1,6 @@
-from AutomatoFD import AutomatoFD
-from JFLAP.LerJFLAP import LerJFLAP
+from AutomatoFD import *
 from JFLAP.SalvarJFLAP import SalvarJFLAP
+from JFLAP.LerJFLAP import LerJFLAP
 
 if __name__ == '__main__':
 
@@ -21,7 +21,12 @@ if __name__ == '__main__':
 
     print(afd)
     
-    afd = SalvarJFLAP(afd,'./JFLAP/AutomatosJFLAP/', 'automatoteste')
+    salvar1 = SalvarJFLAP(afd = afd, caminho = "./JFLAP/Exemplos/", nome = "automatoteste")
+    salvar1.salvarAFD()
     print('automato salvo!')
     
-    afd = LerJFLAP
+    leitura = LerJFLAP(caminho = "./JFLAP/Exemplos/ComecaComAB.jff")
+    afd = leitura.lerAFD()
+    print(afd)
+    print('automato lido')
+    
