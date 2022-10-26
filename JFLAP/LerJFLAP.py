@@ -1,4 +1,4 @@
-import xml.etree.cElementTree as ETc
+import xml.etree.ElementTree as ETc
 from AutomatoFD import AutomatoFD
 
 class LerJFLAP():
@@ -9,7 +9,7 @@ class LerJFLAP():
     def lerAFD(self):
         root = ETc.parse(str(self.caminho)).getroot()
         # ler alfabeto
-        alfabeto = '';
+        alfabeto = ''
         for type_tag in root.findall('automaton/transition'):
             simbolo = type_tag.find('read').text
             if len(simbolo) != 1 or not simbolo in alfabeto:
@@ -35,4 +35,5 @@ class LerJFLAP():
             destino = type_tag.find('to').text
             simbolo = type_tag.find('read').text
             afd.criaTransicao(origem, destino, simbolo)
+            
         return afd
