@@ -31,7 +31,7 @@ if __name__ == '__main__':
     afd1.criaTransicao(2, 2, 'b')
     print(afd1)
     
-    salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "gerandojflap")
+    salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
     salvar1.salvarAFD()
     print('automato salvo!')
     

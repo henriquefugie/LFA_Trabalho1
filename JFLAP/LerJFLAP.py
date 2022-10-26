@@ -8,8 +8,8 @@ class LerJFLAP():
         
     def lerAFD(self):
         root = ETc.parse(str(self.caminho)).getroot()
-        # ler alfabeto
         alfabeto = ''
+        #cria um loop que verifica se a letra encontrada no read, onde no jflap são as transições, está presente no alfabeto, caso não esteja, ele adiciona
         for type_tag in root.findall('automaton/transition'):
             simbolo = type_tag.find('read').text
             if len(simbolo) != 1 or not simbolo in alfabeto:
