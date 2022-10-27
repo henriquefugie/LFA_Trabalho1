@@ -5,9 +5,33 @@ from JFLAP.LerJFLAP import LerJFLAP
 def copiaAFD(self):
     afdcopia = self
     return afdcopia
+
+def menuOperacoes():
+    while 1:
+
+        print("\n=====================\nOPEREÇÕES\n====================="
+             +"\n1 - União\n2 - Intercessão\n3 - Complemento\n4 - Diferença\n0 - Voltar")
+        x=int(input("Digite uma opção:"))     
+
+        if x==1:
+            print("uniao")
+        elif x==2:
+            print("intercessao")
+
+        elif x==3:
+            print("complemento")
+
+        elif x==4:    
+            print("diferença")
+        elif x==0:
+            return
+        else:
+            print("Opção inválida")    
+
     
 if __name__ == '__main__':
 
+    
     afd = AutomatoFD('ab')
     afd1 = AutomatoFD('ab')
 
@@ -34,7 +58,24 @@ if __name__ == '__main__':
     afd1.criaTransicao(2, 2, 'a')
     afd1.criaTransicao(2, 2, 'b')
     print(afd1)
-    
+
+    while 1: 
+        print("\n=====================\nMenu de Opções\n====================="
+             +"\n1-Minimizar AFD\n2-Operações com AFD\n0-Sair")
+        x=int(input("Digite uma opção:"))
+
+        if x==1:
+            #programa ai fugie
+            print("minimo")
+        elif x==2:
+            menuOperacoes()
+        elif x==0:
+            print("Finalizando...")
+            break
+        else:
+            print("Opção inválida")
+
+
     # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
     # salvar1.salvarAFD()
     # print('automato salvo!')
