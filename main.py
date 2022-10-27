@@ -1,6 +1,7 @@
 from AutomatoFD import *
 from JFLAP.SalvarJFLAP import SalvarJFLAP
 from JFLAP.LerJFLAP import LerJFLAP
+from Mult_Oper.MultAFDs import MultAFDs
 
 def copiaAFD(self):
     afdcopia = self
@@ -15,6 +16,8 @@ def menuOperacoes():
         print("\n---------------------\n")
 
         if x==1:
+            for i in range(0,afd.estados.__len__()):
+                print(i)
             print("uniao")
         elif x==2:
             print("intercessao")
@@ -50,6 +53,8 @@ if __name__ == '__main__':
     afd.criaTransicao(4, 2, 'b')
     print(afd)
 
+    
+
     for i in range(0, 3):
         afd1.criaEstado(i)
     afd1.mudaEstadoInicial(0)
@@ -59,6 +64,9 @@ if __name__ == '__main__':
     afd1.criaTransicao(2, 2, 'a')
     afd1.criaTransicao(2, 2, 'b')
     print(afd1)
+
+    afd3=MultAFDs.multiplicaAFD()
+
 
     while 1: 
         print("\n=====================\nMenu de Opções\n====================="
