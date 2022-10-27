@@ -1,4 +1,6 @@
 from AutomatoFD import *
+from Equiv_Min.EquivAFDs import EquivalenciaAFDs
+from Equiv_Min.EquivAFDs import EquivalenciaAFD
 from JFLAP.SalvarJFLAP import SalvarJFLAP
 from JFLAP.LerJFLAP import LerJFLAP
 
@@ -7,40 +9,26 @@ def copiaAFD(self):
     return afdcopia
     
 if __name__ == '__main__':
-
-    afd = AutomatoFD('ab')
-    afd1 = AutomatoFD('ab')
-
-    for i in range(0, 6):
-        afd.criaEstado(i)
-    afd.mudaEstadoInicial(1)
-    afd.mudaEstadoFinal(4, True)
-    afd.criaTransicao(1, 2, 'a')
-    afd.criaTransicao(2, 1, 'a')
-    afd.criaTransicao(3, 4, 'a')
-    afd.criaTransicao(4, 3, 'a')
-    afd.criaTransicao(1, 3, 'b')
-    afd.criaTransicao(2, 1, 'b')
-    afd.criaTransicao(3, 4, 'b')
-    afd.criaTransicao(4, 2, 'b')
-    print(afd)
-
-    for i in range(0, 3):
-        afd1.criaEstado(i)
-    afd1.mudaEstadoInicial(0)
-    afd1.mudaEstadoFinal(2, True)
-    afd1.criaTransicao(0, 1, 'a')
-    afd1.criaTransicao(1, 2, 'b')
-    afd1.criaTransicao(2, 2, 'a')
-    afd1.criaTransicao(2, 2, 'b')
-    print(afd1)
     
-    # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
-    # salvar1.salvarAFD()
-    # print('automato salvo!')
+    leitura2 = LerJFLAP(caminho = "./JFLAP/Exemplos/AutomatoA.jff")
+    afdA = leitura2.lerAFD()
+    print(afdA)
     
-    # leitura = LerJFLAP(caminho = "./JFLAP/Exemplos/ComecaComAB.jff")
-    # afd1 = leitura.lerAFD()
-    # print(afd1)
-    # print('automato lido')
+    leitura2 = LerJFLAP(caminho = "./JFLAP/Exemplos/AutomatoB.jff")
+    afdB = leitura2.lerAFD()
+    print(afdB)
+    
+    # equivalencia = EquivalenciaAFD(afdA)
+    # tabelaEstEqui = equivalencia.estadosEquiv()
+    # for (x, y) in tabelaEstEqui.keys():
+    #     v = tabelaEstEqui[(x, y)]
+    #     print("({} e {})-->{}, \n".format(x, y, v))
+    
+    equivalenciaAFDs = EquivalenciaAFDs(afdA, afdB)
+    
+    v, afd, estadosEqui = equivalenciaAFDs.EquivalenciaEntreAFDs()
+    if(v):
+        print("Os AFDs são equivalentes!!")
+    else:
+        print("Os AFDs NÂO são equivalentes!!")
     
