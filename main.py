@@ -12,6 +12,7 @@ def menuOperacoes():
         print("\n=====================\nOPEREÇÕES\n====================="
              +"\n1 - União\n2 - Intercessão\n3 - Complemento\n4 - Diferença\n0 - Voltar")
         x=int(input("Digite uma opção:"))     
+        print("\n---------------------\n")
 
         if x==1:
             print("uniao")
@@ -26,7 +27,7 @@ def menuOperacoes():
         elif x==0:
             return
         else:
-            print("Opção inválida")    
+            print("\nOpção inválida")    
 
     
 if __name__ == '__main__':
@@ -63,6 +64,7 @@ if __name__ == '__main__':
         print("\n=====================\nMenu de Opções\n====================="
              +"\n1-Minimizar AFD\n2-Operações com AFD\n0-Sair")
         x=int(input("Digite uma opção:"))
+        print("\n---------------------\n")
 
         if x==1:
             #programa ai fugie
@@ -70,10 +72,10 @@ if __name__ == '__main__':
         elif x==2:
             menuOperacoes()
         elif x==0:
-            print("Finalizando...")
+            print("\nFinalizando...")
             break
         else:
-            print("Opção inválida")
+            print("\nOpção inválida")
 
 
     # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
