@@ -18,23 +18,23 @@ class MultAFDs:
 
         afdm=AutomatoFD(self.afd1.alfabeto)
 
-        """Cria dicionario de Estados"""
+        #Cria dicionario de Estados
         est=dict()
         estados = list()
-        """Cria estados"""
+        #Cria estados
         cont=0
         for i in self.afd1.estados:
             for j in self.afd2.estados:
                 est['afd1']=i
                 est['afd2']=j
                 estados.append(est.copy())
-                """Verifica se é Estado Inicial"""
+                #Verifica se é Estado Inicial
                 if i==self.afd1.inicial and j==self.afd2.inicial:
                     afdm.criaEstado(cont,True)
                 else:
                     afdm.criaEstado(cont)
                 cont+=1    
-        """Cria Transições """
+        #Cria Transições
         for a in afdm.alfabeto:
             cont=0;
             for e in estados:

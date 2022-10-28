@@ -36,36 +36,49 @@ def menuOperacoes():
 
         
         if x==1:
-            opera.uniao(afdm=afdm)
-            print(afdm)
+            afdu=copiaAFD(afdm)
+            opera.uniao(afdm=afdu)
+            print(afdu)
             automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
-            salvar = SalvarJFLAP(afd= afdm, nome = automatoDestino)
+            salvar = SalvarJFLAP(afd= afdu, nome = automatoDestino)
             salvar.salvarAFD()
             print('Automato salvo com sucesso')
             
             
         elif x==2:
-            opera.intercessao(afdm=afdm)
-            print(afdm)
+            afdi=copiaAFD(afdm)
+            opera.intercessao(afdm=afdi)
+            print(afdi)
             automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
-            salvar = SalvarJFLAP(afd= afdm, nome = automatoDestino)
+            salvar = SalvarJFLAP(afd= afdi, nome = automatoDestino)
             salvar.salvarAFD()
             print('Automato salvo com sucesso')
             
         elif x==3:
-            opera.complemento(afdc=afd1)
-            print(afd1)
+            afdc=copiaAFD(afd1)
+            opera.complemento(afdc=afdc)
+            print('Complemento do primeiro automato:\n',afdc)
             automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
-            salvar = SalvarJFLAP(afd= afd1, nome = automatoDestino)
+            salvar = SalvarJFLAP(afd= afdc, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
+            
+            afdc=copiaAFD(afd2)
+            opera.complemento(afdc=afdc)
+            print('Complemento do segundo automato:\n',afdc)
+            print(afdc)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdc, nome = automatoDestino)
             salvar.salvarAFD()
             print('Automato salvo com sucesso')
             
             
         elif x==4:    
-            opera.diferenca(afdm=afdm)
-            print(afdm)
+            afdd=copiaAFD(afdm)
+            opera.diferenca(afdm=afdd)
+            print(afdd)
             automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
-            salvar = SalvarJFLAP(afd= afdm, nome = automatoDestino)
+            salvar = SalvarJFLAP(afd= afdd, nome = automatoDestino)
             salvar.salvarAFD()
             print('Automato salvo com sucesso')
         elif x==0:
