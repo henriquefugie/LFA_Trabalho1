@@ -85,12 +85,16 @@ if __name__ == '__main__':
         if x==1:
             
             nomeMin = input("Digite o nome do arquivo do automato que deseja minimizar: ")
+            nomeMinzado = input("Digite o nome do arquivo do automato minimizado que sera salvo: ")
             leitura = LerJFLAP(nome = nomeMin)
             afdLido = leitura.lerAFD()
             print("\nAutomato lido: ", afdLido)
             minimizar = MinimizaAFD(afdLido)
             afdMin = minimizar.minimizaAFD()
             print("\nAutomato minimizado: ", afdMin)
+            salvar = SalvarJFLAP(afd= afdMin, nome = nomeMinzado)
+            salvar.salvarAFD()
+            print("Arquivo copiado com sucesso")
             
         elif x==2:
             
@@ -137,22 +141,3 @@ if __name__ == '__main__':
             break
         else:
             print("\nOpção inválida")
-
-
-    # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
-    # salvar1.salvarAFD()
-    # print('automato salvo!')
-    
-    leitura = LerJFLAP(nome = "AutomatoB")
-    afdB = leitura.lerAFD()
-    print(afdB)
-    
-    equivalencia = EquivalenciaAFD(afd = afdA)
-    tabelaEstEquivalentes = equivalencia.estadosEquiv()
-    print("Tabela dos estados equivalentes")
-    for (x, y) in tabelaEstEquivalentes.keys():
-        v = tabelaEstEquivalentes[(x, y)]
-        print("({} e {})-->{}, ".format(x, y, v))
-        
-    equivalenciaAFDs = EquivalenciaAFDs(afd1 = afdA, afd2 = afdB)
-    equivalenciaAFDs.EquivalenciaEntreAFDs()
