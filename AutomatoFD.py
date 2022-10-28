@@ -47,7 +47,7 @@ class AutomatoFD:
         if final:
             self.finais = self.finais.union({id})
         else:
-            self.fianis = self.finais.difference({id})
+            self.finais = self.finais.difference({id})
 
     def move(self, cadeia):
         for simbolo in cadeia:

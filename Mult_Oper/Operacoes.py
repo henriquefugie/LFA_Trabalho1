@@ -24,14 +24,15 @@ class Operacoes():
                 cont+=1
        
 
-    def complemento(afdc: AutomatoFD):
+    def complemento(self,afdc: AutomatoFD):
         for i in afdc.estados:
             if(afdc.estadoFinal(i)):
-                afdc.mudaEstadoFinal(cont, False)
+                afdc.mudaEstadoFinal(i, False)
             else:
-                afdc.mudaEstadoFinal(cont, True)
+                afdc.mudaEstadoFinal(i, True)    
 
-    def diferenca(afdm: AutomatoFD):
+    def diferenca(self,afdm: AutomatoFD):
+        cont=0
         for i in self.afd1.estados:
             for j in self.afd2.estados:
                 if (self.afd1.estadoFinal(i) and not self.afd2.estadoFinal(j)):
