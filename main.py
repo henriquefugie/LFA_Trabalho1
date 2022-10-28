@@ -23,10 +23,7 @@ def menuOperacoes():
     afd2.criaTransicao(1, 0, 'a')
     afd2.criaTransicao(1, 1, 'b')
     afd2.criaTransicao(0, 0, 'b')
-    
-    print(afd2)
 
-    
 
     for i in range(0, 4):
         afd1.criaEstado(i)
@@ -42,13 +39,14 @@ def menuOperacoes():
     afd1.criaTransicao(2, 0, 'a')
     afd1.criaTransicao(3, 3, 'a')
     afd1.criaTransicao(3, 3, 'b')
-    print(afd1)
+
 
     while 1:
         
         opera=Operacoes(afd1=afd1,afd2=afd2)
         multi=MultAFDs(afd1=afd1,afd2=afd2)
         afdm=multi.multiplicaAFD()
+
 
         print("\n"+"="*20+"\nOPEREÇÕES\n"+"="*20+"\n1 - União\n2 - Intercessão\n"
               +"3 - Complemento\n4 - Diferença\n0 - Voltar")

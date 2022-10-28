@@ -11,7 +11,7 @@ class MultAFDs:
         self.afd2 = afd2
 
     def multiplicaAFD(self):
-
+        
         if(self.afd1.alfabeto!=self.afd2.alfabeto):
             print('Automatos possuem alfabeto diferentes')
             return NULL
@@ -41,6 +41,7 @@ class MultAFDs:
                 contpos=0;
                 pos1=pos2=0
                 for v in e.values(): 
+                    
                     if contpos==0:
                         pos1=self.afd1.transicoes[(v,a)]
                         contpos+=1
@@ -49,6 +50,7 @@ class MultAFDs:
                 est['afd1']=pos1
                 est['afd2']=pos2
 
+                i=0
                 while i < estados.__len__():
                     if (estados[i]==est):
                         afdm.criaTransicao(cont,i,a)
