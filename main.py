@@ -12,34 +12,15 @@ def copiaAFD(self):
     return afdcopia
 
 def menuOperacoes():
-    afd2 = AutomatoFD('ab')
-    afd1 = AutomatoFD('ab')
-
-    for i in range(0, 2):
-        afd2.criaEstado(i)
-    afd2.mudaEstadoInicial(0)
-    afd2.mudaEstadoFinal(0, True)
-    afd2.criaTransicao(0, 1, 'a')
-    afd2.criaTransicao(1, 0, 'a')
-    afd2.criaTransicao(1, 1, 'b')
-    afd2.criaTransicao(0, 0, 'b')
-
-
-    for i in range(0, 4):
-        afd1.criaEstado(i)
-    afd1.mudaEstadoInicial(0)
-    afd1.mudaEstadoFinal(2, True)
-    afd1.mudaEstadoFinal(1, True)
-    afd1.mudaEstadoFinal(0, True)
-    afd1.criaTransicao(0, 1, 'b')
-    afd1.criaTransicao(0, 0, 'a')
-    afd1.criaTransicao(1, 2, 'a')
-    afd1.criaTransicao(1, 1, 'b')
-    afd1.criaTransicao(2, 3, 'b')
-    afd1.criaTransicao(2, 0, 'a')
-    afd1.criaTransicao(3, 3, 'a')
-    afd1.criaTransicao(3, 3, 'b')
-
+    nomeAfd1 = input("Digite o nome do arquivo do primeiro automato: ")
+    leitura = LerJFLAP(nome = nomeAfd1)
+    afd1 = leitura.lerAFD()
+    
+    nomeAfd2 = input("Digite o nome do arquivo do primeiro automato: ")
+    leitura = LerJFLAP(nome = nomeAfd2)
+    afd2 = leitura.lerAFD()
+    
+    print("\nAutomatos lidos:\n", afd1, "\n\n",afd2, "\n")
 
     while 1:
         
@@ -55,17 +36,51 @@ def menuOperacoes():
 
         
         if x==1:
-            opera.uniao(afdm=afdm)
-            print(afdm)
+            afdu=copiaAFD(afdm)
+            opera.uniao(afdm=afdu)
+            print(afdu)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdu, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
+            
+            
         elif x==2:
-            opera.intercessao(afdm=afdm)
-            print(afdm)
+            afdi=copiaAFD(afdm)
+            opera.intercessao(afdm=afdi)
+            print(afdi)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdi, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
+            
         elif x==3:
-            opera.complemento(afdc=afd1)
-            print(afd1)
+            afdc=copiaAFD(afd1)
+            opera.complemento(afdc=afdc)
+            print('Complemento do primeiro automato:\n',afdc)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdc, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
+            
+            afdc=copiaAFD(afd2)
+            opera.complemento(afdc=afdc)
+            print('Complemento do segundo automato:\n',afdc)
+            print(afdc)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdc, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
+            
+            
         elif x==4:    
-            opera.diferenca(afdm=afdm)
-            print(afdm)
+            afdd=copiaAFD(afdm)
+            opera.diferenca(afdm=afdd)
+            print(afdd)
+            automatoDestino = input("Digite o nome do arquivo em que deseja salvar o automato: ")
+            salvar = SalvarJFLAP(afd= afdd, nome = automatoDestino)
+            salvar.salvarAFD()
+            print('Automato salvo com sucesso')
         elif x==0:
             return
         else:
@@ -140,17 +155,3 @@ if __name__ == '__main__':
     # salvar1 = SalvarJFLAP(afd = afd1, caminho = "./JFLAP/Exemplos/", nome = "teste1")
     # salvar1.salvarAFD()
     # print('automato salvo!')
-    
-    leitura = LerJFLAP(nome = "AutomatoB")
-    afdB = leitura.lerAFD()
-    print(afdB)
-    
-    equivalencia = EquivalenciaAFD(afd = afdA)
-    tabelaEstEquivalentes = equivalencia.estadosEquiv()
-    print("Tabela dos estados equivalentes")
-    for (x, y) in tabelaEstEquivalentes.keys():
-        v = tabelaEstEquivalentes[(x, y)]
-        print("({} e {})-->{}, ".format(x, y, v))
-        
-    equivalenciaAFDs = EquivalenciaAFDs(afd1 = afdA, afd2 = afdB)
-    equivalenciaAFDs.EquivalenciaEntreAFDs()

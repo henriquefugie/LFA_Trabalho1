@@ -10,7 +10,7 @@ class Operacoes():
         cont=0
         for i in self.afd1.estados:
             for j in self.afd2.estados:
-                if (self.afd1.estadoFinal(i) or self.afd2.estadoFinal(j)):
+                if (self.afd1.estadoFinal(int(i)) or self.afd2.estadoFinal(int(j))):
                     afdm.mudaEstadoFinal(cont, True)
                 cont+=1 
    
