@@ -18,6 +18,7 @@ class LerJFLAP():
         #cria o afd recolhendo os estados, atravez do state e recebe tambem o id do estado classificando tambem se ele é final ou inicial ou não através da tag initial ou final
         alfabetoOrd=''
         alfabetoOrd=sorted(alfabeto)
+        #Esta funcao serve para ordenar o alfabeto recebido pelo jflap
         novoAlfabeto = ''.join(alfabetoOrd)
         afd = AutomatoFD(novoAlfabeto)
         for type_tag in root.findall('automaton/state'):
