@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from AutomatoFD import *
 from Equiv_Min.EquivAFDs import EquivalenciaAFDs
 from Equiv_Min.EquivAFDs import EquivalenciaAFD
@@ -28,6 +29,8 @@ def menuOperacoes():
         multi=MultAFDs(afd1=afd1,afd2=afd2)
         afdm=multi.multiplicaAFD()
 
+        if(afdm==NULL):
+            return
 
         print("\n"+"="*20+"\nOPEREÇÕES\n"+"="*20+"\n1 - União\n2 - Intercessão\n"
               +"3 - Complemento\n4 - Diferença\n0 - Voltar")
