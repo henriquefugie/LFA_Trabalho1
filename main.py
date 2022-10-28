@@ -1,6 +1,7 @@
 from AutomatoFD import *
 from Equiv_Min.EquivAFDs import EquivalenciaAFDs
 from Equiv_Min.EquivAFDs import EquivalenciaAFD
+from Equiv_Min.MiniAFD import MinimizaAFD
 from JFLAP.SalvarJFLAP import SalvarJFLAP
 from JFLAP.LerJFLAP import LerJFLAP
 
@@ -10,25 +11,22 @@ def copiaAFD(self):
     
 if __name__ == '__main__':
     
-    leitura2 = LerJFLAP(caminho = "./JFLAP/Exemplos/AutomatoA.jff")
+    leitura2 = LerJFLAP(nome = "prefixo_ab-sufixo_ab")
     afdA = leitura2.lerAFD()
-    print(afdA)
     
-    leitura2 = LerJFLAP(caminho = "./JFLAP/Exemplos/AutomatoB.jff")
+    leitura2 = LerJFLAP(nome = "prefixo_ab-sufixo_ab_comVazio")
     afdB = leitura2.lerAFD()
-    print(afdB)
     
-    # equivalencia = EquivalenciaAFD(afdA)
-    # tabelaEstEqui = equivalencia.estadosEquiv()
-    # for (x, y) in tabelaEstEqui.keys():
-    #     v = tabelaEstEqui[(x, y)]
-    #     print("({} e {})-->{}, \n".format(x, y, v))
+    minimiza = MinimizaAFD(afdA)
+    afd = minimiza.minimizaAFD()
+    print(afd)
     
-    equivalenciaAFDs = EquivalenciaAFDs(afdA, afdB)
+    salva = SalvarJFLAP(afd= afd, nome= "AFDminimizado")
+    salva.salvarAFD()
+
+    minimiza = MinimizaAFD(afdB)
+    afdB1 = minimiza.minimizaAFD()
+    print(afdB1)
     
-    v, afd, estadosEqui = equivalenciaAFDs.EquivalenciaEntreAFDs()
-    if(v):
-        print("Os AFDs são equivalentes!!")
-    else:
-        print("Os AFDs NÂO são equivalentes!!")
-    
+    salva = SalvarJFLAP(afd= afdB1, nome= "AFDminimizadocomVazio")
+    salva.salvarAFD()

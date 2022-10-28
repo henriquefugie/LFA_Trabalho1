@@ -7,52 +7,68 @@ class EquivalenciaAFDs():
         self.afd2 = afd2
         
     def EquivalenciaEntreAFDs(self):
+        
+        #antes de tudo, é necessário verificar se os alfabetos dos dois AFs são iguais, caso não, ele não consegue executar
+        if(self.afd1.alfabeto != self.afd2.alfabeto):
+            print("Os automatos possuem alfabetos diferentes")
+            return
+        #Neste ponto do código ele vai criar um novo afd que vai armazenar todos os estados e transicoes do dois automatos
         afd = AutomatoFD(self.afd1.alfabeto)
-        """Cria dicionario de Estados"""
         estados = dict()
         cont = 0
-        """Cria estados"""
+        
+        #Aqui ele percorre o primeiro e o segundo autmato para armazenar os estados e as transicoes no afd criado
         for i in self.afd1.estados:
             estados[(i,'afd1')] = cont
             afd.criaEstado(cont)
-            """Verifica se é Estado Inicial"""
+            
+            #verifica se os estados são inicias ou finais
             if (i == self.afd1.inicial):
                 afd.mudaEstadoInicial(cont)
-            """Verifica se é Estado Final"""
             if (self.afd1.estadoFinal(i)):
                 afd.mudaEstadoFinal(cont,True)
             cont += 1
+            
         for j in self.afd2.estados:
             estados[(j, 'afd2')] = cont
             afd.criaEstado(cont)
-            """Verifica se é Estado Inicial"""
+            
+            #verifica se os estados são inicias ou finais
             if (j == self.afd2.inicial):
                 afd.mudaEstadoInicial(cont)
-            """Verifica se é Estado Final"""
             if (self.afd2.estadoFinal(j)):
                 afd.mudaEstadoFinal(cont, True)
             cont += 1
-        """Cria Transições AFD1 """
+
+        #verifica as transicoes do primeiro automato
         for (i,a) in self.afd1.transicoes.keys():
             for a in self.afd1.alfabeto:
                  o = estados[(i,'afd1')]
                  i2 = self.afd1.transicoes[(i,a)]
                  d = estados[(i2,'afd1')]
                  afd.criaTransicao(o,d,a)
-        """Cria Transições AFD2 """
+                 
+        #verifica as transicoes do segundo automato
         for (i, a) in self.afd2.transicoes.keys():
-            for a in self.afd1.alfabeto:
+            for a in self.afd2.alfabeto:
                 o = estados[(i, 'afd2')]
                 i2 = self.afd2.transicoes[(i, a)]
                 d = estados[(i2, 'afd2')]
                 afd.criaTransicao(o, d, a)
-        """Verifica quais estados são equivalentes"""
-        estadosEqui = afd.estadosEquiv()
-        """Verifica se os dois estados iniciais são equivalentes"""
+        
+        #aqui ele verifica se os estados do afd gerado sao equivalentes
+        equivalente = EquivalenciaAFD(afd)
+        estadosEqui = equivalente.estadosEquiv()
+        
+        #neste ponto, ele verifica se na tabela, os estados inicias dos dois autmatos são equivalentes ou não, se sim são equivalentes, se não, não
         x = self.afd1.inicial
-        y = self.afd2.inicial
+        y = (len(self.afd1.estados))
         v = estadosEqui[(x, y)]
-        return v, afd, estadosEqui
+        
+        if(v):
+            print("Os AFDs sao equivalentes")
+        else:
+            print("Os AFDs NAO sao equivalentes")
     
 class EquivalenciaAFD():
     
@@ -60,8 +76,9 @@ class EquivalenciaAFD():
         self.afd = afd
         
     def estadosEquiv(self):
-        tabelaEstadosEquivalentes = dict()
         
+        #aqui ele vai criar a matriz que armazena se os estados sao equivalentes ou não, onde False seria não equivalente e True equivalente
+        tabelaEstadosEquivalentes = dict()
         for i in range(1, len(self.afd.estados)):
             for j in range(0, (len(self.afd.estados)-1)):
                 if(i > j):
@@ -74,12 +91,13 @@ class EquivalenciaAFD():
         continua = True
         contador = 0
         
+        #aqui ele verifica os valores colocados na matriz,caso o valor seja armazenado como True, ele faz uma segunda verificacao
         while continua:
             contador = 0
             for(j, i) in tabelaEstadosEquivalentes.keys():
-                verdade = tabelaEstadosEquivalentes[(j, i)]
+                valor = tabelaEstadosEquivalentes[(j, i)]
                 
-                if verdade:
+                if valor:
                     resultado = self.Equivalente(tabelaEstadosEquivalentes, j, i)
                     tabelaEstadosEquivalentes[j, i] = resultado
                     if(resultado == False):
@@ -88,6 +106,7 @@ class EquivalenciaAFD():
                 continua = False
         return tabelaEstadosEquivalentes
     
+    #Esta funcao verifica se os True são realmente equivalentes, caso não, ele define como False
     def Equivalente(self, tabelaEstadosEquivalentes, j = 0, i = 0):
         for a in self.afd.alfabeto:
             x = self.afd.transicoes[(j, a)]
@@ -102,6 +121,7 @@ class EquivalenciaAFD():
                     return False
         return True
     
+    # esta funcao ja elimina da tabela os casos onde um estado é inicial ou final e classifica na tabela como False para os diferentes e True para os que são inicias e finais simultaneamente
     def estadosTrivialmenteNaoEquivalentes(self, estadoX, estadoY):
         if(self.afd.estadoFinal(estadoX) and self.afd.estadoFinal(estadoY)):
             return True
@@ -111,51 +131,3 @@ class EquivalenciaAFD():
             return False
         elif(not self.afd.estadoFinal(estadoX) and self.afd.estadoFinal(estadoY)):
             return False
-        
-    def equivalenciaEntreAFDs(self, afd, afd2):
-        afd = AutomatoFD(self.alfabeto)
-        """Cria dicionario de Estados"""
-        estados = dict()
-        cont = 0
-        """Cria estados"""
-        for i in afd.estados:
-            estados[(i,'afd')] = cont
-            afd.criaEstado(cont)
-            """Verifica se é Estado Inicial"""
-            if (i == afd.inicial):
-                afd.mudaEstadoInicial(cont)
-            """Verifica se é Estado Final"""
-            if (afd.estadoFinal(i)):
-                afd.mudaEstadoFinal(cont,True)
-            cont += 1
-        for j in afd2.estados:
-            estados[(j, 'afd2')] = cont
-            afd.criaEstado(cont)
-            """Verifica se é Estado Inicial"""
-            if (j == afd2.inicial):
-                afd.mudaEstadoInicial(cont)
-            """Verifica se é Estado Final"""
-            if (afd2.estadoFinal(j)):
-                afd.mudaEstadoFinal(cont, True)
-            cont += 1
-        """Cria Transições AFD1 """
-        for (i,a) in afd.transicoes.keys():
-            for a in self.alfabeto:
-                 o = estados[(i,'afd')]
-                 i2 = afd.transicoes[(i,a)]
-                 d = estados[(i2,'afd')]
-                 afd.criaTransicao(o,d,a)
-        """Cria Transições AFD2 """
-        for (i, a) in afd2.transicoes.keys():
-            for a in self.alfabeto:
-                o = estados[(i, 'afd2')]
-                i2 = afd2.transicoes[(i, a)]
-                d = estados[(i2, 'afd2')]
-                afd.criaTransicao(o, d, a)
-        """Verifica quais estados são equivalentes"""
-        estadosEqui = afd.estadosEquivalentes()
-        """Verifica se os dois estados iniciais são equivalentes"""
-        x = afd.inicial
-        y = afd2.inicial
-        v = estadosEqui[(x, y)]
-        return v, afd, estadosEqui

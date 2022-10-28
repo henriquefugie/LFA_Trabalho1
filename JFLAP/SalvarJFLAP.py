@@ -19,13 +19,13 @@ def indent(elem, level=0):
             
 class SalvarJFLAP():
     
-    def __init__(self, afd : AutomatoFD, caminho, nome):
+    def __init__(self, afd : AutomatoFD, nome):
         self.afd = afd
-        self.caminho = caminho
         self.nome = nome
         
     def salvarAFD(self):
         
+        #separa o arquivo jff em estrutura, classifica em automato finito e faz o subelemento automaton
         root = ETc.Element("structure")
         ETc.SubElement(root, "type").text = "fa"
         doc = ETc.SubElement(root, "automaton")
@@ -48,4 +48,6 @@ class SalvarJFLAP():
                     ETc.SubElement(transicao, "read").text = str(simbolo)
         indent(root)
         tree = ETc.ElementTree(root)
-        tree.write("{}.jff".format(self.caminho+self.nome), encoding="UTF-8", method="xml", xml_declaration=True)
+        
+        #adiciona a parte de cima do xml, onde tem a versão do xml, o encoding e o caminho do arquivo junto com o nome
+        tree.write("{}.jff".format("./JFLAP/Exemplos/"+self.nome), encoding="UTF-8", method="xml", xml_declaration=True)
