@@ -74,7 +74,7 @@ def menuOperacoes():
 if __name__ == '__main__':
 
     while 1: 
-        print("\n"+"="*30+"\nMenu de Opções}\n"+"="*30+"\n1 - Minimizar AFD\n"
+        print("\n"+"="*20+"\nMenu de Opções\n"+"="*20+"\n1 - Minimizar AFD\n"
               +"2 - Vericar equivalencia entre AFDs \n3 - Operações com AFD\n0 - Sair")
         x=int(input("Digite uma opção:"))
         print("\n"+"-"*30+"\n")
